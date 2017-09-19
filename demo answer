@@ -1,0 +1,43 @@
+// you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        // write your code in Java SE 8
+        int ans = -1;
+        int n = A.length;
+        //check array A is not null
+        if (n==0) {
+            return ans;
+        }
+        //check array A with only one entry
+        else if (n==1){
+            return 0;
+            }
+        else{
+            long sum_left =0;
+            long sum_right=0;
+            for (int i=1;i<n;i++){
+                sum_right=sum_right+A[i];
+                }
+        //check the end point of array A
+            if(sum_right-A[n-1]+A[0]==0){
+                return n-1;
+                }
+            else{
+            for (int j=0;j<n-1;j++){
+                if(sum_left==sum_right){
+                    ans =j;
+                    break;
+                    }
+                sum_left=sum_left+A[j];
+                sum_right=sum_right-A[j+1];
+                }
+            return ans;
+            }
+        }
+    }
+}
